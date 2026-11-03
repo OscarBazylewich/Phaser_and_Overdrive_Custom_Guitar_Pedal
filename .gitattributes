@@ -1,0 +1,3 @@
+# Show KiCad design files in GitHub language stats (they are hidden by default).
+*.kicad_sch linguist-detectable
+*.kicad_pcb linguist-detectable
