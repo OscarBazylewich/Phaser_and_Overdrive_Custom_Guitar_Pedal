@@ -1,26 +1,29 @@
 # Phaser and Overdrive Guitar Pedal
 
-This project attempts to recreate and improve upon popular guitar pedals such as the MXR Phase 90 and the BOSS OD-1 by incorporating modern analog circuit design and PCB design.
+This project tries to make better equivalents of guitar pedals that many guitar players use, for example the MXR Phase 90 and the BOSS OD-1. For this, the project uses new methods of analog circuit design and PCB design. For the overdrive, the project also uses some circuit methods from the Ibanez Tube Screamer.
 
 [![License: GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE)
 ![KiCad](https://img.shields.io/badge/KiCad-10-314CB0?logo=kicad&logoColor=white)
 ![LTspice](https://img.shields.io/badge/simulated%20in-LTspice-0A5DA6)
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/17ca487a-03ff-42e2-bb42-c56750a9efa3" width="480" alt="KiCad 3D render of the pedal PCB in a 1590BB outline">
+  <img src="https://github.com/user-attachments/assets/17ca487a-03ff-42e2-bb42-c56750a9efa3" width="480" alt="KiCad 3D view of the pedal PCB in a 1590BB outline">
   <br>
-  <em>Final project PCB layout (KiCad 3D view).</em>
+  <em>The last PCB layout of the project (KiCad 3D view).</em>
 </p>
 
-For the overdrive I also borrowed from the Ibanez Tube Screamer. This repository includes an LTspice schematic along with the 3rd party TL072 model it uses, and a KiCad project where both effects, the power supply and two footswitches sit on one 4-layer board sized for a Hammond 1590BB enclosure.
+This repository contains these items:
+
+- An LTspice schematic, with the third-party TL072 model that the schematic uses.
+- A KiCad project. In this project, the two effects, the power supply and two footswitches are on one 4-layer PCB. The PCB has the correct dimensions for a Hammond 1590BB enclosure.
 
 ## Features
 
-- Four-stage JFET phaser swept by an on-board LFO (Rate, Depth).
-- OD-1 / Tube Screamer-style diode-clipping overdrive (Gain, Tone).
-- Buffered input and a separate DPDT footswitch for each effect, phaser first.
-- Runs off one DC jack: on-board ±4.5 V rails, plus reverse-polarity and surge protection.
-- 85.5 mm × 110.75 mm 4-layer PCB with TVS protection on both audio jacks.
+- A JFET phaser with four all-pass stages (Rate, Depth). An LFO on the PCB modulates the phaser.
+- An overdrive with diode clipping, of the OD-1 and Tube Screamer type (Gain, Tone).
+- An input buffer, and one DPDT footswitch for each effect. The signal goes through the phaser first.
+- One DC jack supplies the power. The PCB makes the ±4.5 V rails. It also has reverse-polarity protection and surge protection.
+- An 85.5 mm × 110.75 mm 4-layer PCB, with TVS protection on the two audio jacks.
 
 ## Hardware
 
@@ -29,19 +32,19 @@ For the overdrive I also borrowed from the Ibanez Tube Screamer. This repository
 ```mermaid
 flowchart LR
     IN["Input jack J3"] --> BUF["Input buffer<br/>U5A"]
-    BUF --> S1["Phaser switch<br/>S1"]
+    BUF --> S1["Phaser footswitch<br/>S1"]
     S1 --> PH["Phaser<br/>4 all-pass stages"]
-    S1 -- "bypass" --> S2["Overdrive switch<br/>S2"]
+    S1 -- "phaser off" --> S2["Overdrive footswitch<br/>S2"]
     PH --> S2
     S2 --> OD["Overdrive<br/>gain, clipping, tone"]
-    S2 -- "bypass" --> OUT["Output jack J2"]
+    S2 -- "overdrive off" --> OUT["Output jack J2"]
     OD --> OUT
     LFO["Triangle LFO<br/>U5C, U5D"] --> PH
 ```
 
-### Main parts
+### Primary parts
 
-| Part | Role |
+| Part | Function |
 | --- | --- |
 | U1 TPS560430 buck converter | DC input to +5.5 V |
 | U2 LM2662 charge pump | +5.5 V to −5.5 V |
@@ -50,17 +53,17 @@ flowchart LR
 | Q1–Q4 J113 JFETs | Voltage-controlled resistors in the phaser |
 | D1 CUS520 Schottky, D2–D4 20 V TVS | Reverse-polarity, surge and ESD protection |
 | D5–D8 MUR260RLG | Overdrive clipping diodes |
-| VR1–VR4 PTV09A pots, RV1/RV2 3386P trimmers | Controls (see below) |
+| VR1–VR4 PTV09A potentiometers, RV1/RV2 3386P trimmers | Controls (refer to the next table) |
 | S1, S2 SF12011F DPDT footswitches | Phaser and overdrive on/off |
 | J1 2.1 × 5.5 mm DC jack, J2/J3 MJ-63022A 6.35 mm jacks | Power, output, input |
 
 ### Controls
 
-| Control | Ref | Value | What it does |
+| Control | Ref | Value | Function |
 | --- | --- | --- | --- |
-| Rate | VR1 | 1 MΩ linear | LFO speed |
-| Depth | VR2 | 1 MΩ linear | Amount of phase-shifted signal in the mix |
-| Tone | VR3 | 20 kΩ log | Active tone control |
+| Rate | VR1 | 1 MΩ linear | LFO frequency |
+| Depth | VR2 | 1 MΩ linear | Level of the phase-shifted signal in the mixed output |
+| Tone | VR3 | 20 kΩ log | Tone control (active filter) |
 | Gain | VR4 | 1 MΩ log | Overdrive feedback resistance |
 | LFO offset trimmer | RV1 | 500 kΩ | LFO DC level (J113 bias) |
 | LFO hysteresis trimmer | RV2 | 220 kΩ | LFO amplitude and frequency |
@@ -70,64 +73,117 @@ flowchart LR
 <p align="center">
   <img src="https://github.com/user-attachments/assets/37f43ded-42a7-4dfd-a382-c153154c1a23" width="800" alt="LTspice schematic of the full circuit">
   <br>
-  <em>Preview of the circuit in LTspice (<code>LTSpice/Schematic.asc</code>).</em>
+  <em>The circuit in LTspice (<code>LTSpice/Schematic.asc</code>).</em>
 </p>
 
-The notes below use KiCad's reference designators (LTspice uses different ones). The LTspice model uses the same topology and values, except every pot is linear, the tone pot is 1 MΩ (KiCad: 20 kΩ) and the clipping diodes are 1N4007 (KiCad: MUR260RLG). It also has no footswitches, uses ideal ±4.5 V sources for the supply, and feeds the phaser and the overdrive from the same input with separate outputs.
+The sections that follow use the KiCad reference designators. The LTspice schematic uses different reference designators.
+
+The LTspice schematic has the same topology and the same values as the KiCad schematic, with these differences:
+
+- All the potentiometers are linear.
+- The Tone potentiometer is 1 MΩ (KiCad: 20 kΩ).
+- The clipping diodes are 1N4007 (KiCad: MUR260RLG).
+- There are no footswitches.
+- Ideal ±4.5 V sources supply the power.
+- The same input signal goes to the phaser and to the overdrive. The phaser and the overdrive have different outputs.
 
 ### Power supply
 
-- The schematic gives 9–18 V as the expected DC input. D1 (Schottky, in series) blocks reverse polarity, and D2 (20 V TVS) shunts surges to ground.
-- U1 (buck) makes +5.5 V, and U2 (charge pump) inverts it to an unregulated −5.5 V.
-- U4 and U3 (LDOs) bring these down to ±4.5 V. Every TL074 has 100 nF decoupling on each rail.
+- The KiCad schematic gives 9–18 V as the range for the DC input. D1 (Schottky, in series) gives reverse-polarity protection. D2 (20 V TVS) sends surges to ground.
+- U1 (buck converter) makes +5.5 V. U2 (charge pump) changes this voltage to an unregulated −5.5 V.
+- U4 and U3 (LDOs) decrease these voltages to ±4.5 V. Each TL074 has 100 nF decoupling capacitance on each rail.
 
-### Input buffer and bypass
+### Input buffer and footswitches
 
-- C14 (1 µF) AC-couples the input jack tip into U5A, a voltage follower. R9 (1 MΩ) sets the input impedance and DC bias, and D4 clamps ESD on the tip.
-- Each footswitch is a DPDT through/around selector. NC_1 and NC_2 are tied together, so when an effect is off the signal skips it.
-- U5A stays in the path even with both effects off.
+- C14 (1 µF) connects the tip of the input jack to U5A through AC coupling. U5A is a voltage follower.
+- R9 (1 MΩ) sets the input impedance and the DC bias. D4 gives ESD protection on the tip.
+- Each footswitch is a DPDT selector. It sends the signal through the effect, or it bypasses the effect.
+- NC_1 and NC_2 are connected together. Thus, when an effect is off, the footswitch bypasses that effect.
+- When the two effects are off, U5A stays in the signal path.
 
 ### LFO
 
-- U5C is a Schmitt trigger whose output charges and discharges C16 (4.7 µF) through the Rate pot. RV2 sets the hysteresis. The annotated range is about 0.185 Hz to 12.2 Hz.
-- U5D amplifies the C16 voltage into `TriangleOut`, which drives all four JFET gates (test pad TP3). RV1 sets its DC offset to bias the J113s (cut-off −0.5 V to −3.0 V per the LTspice note).
+- U5C is a Schmitt trigger. The output of U5C charges and discharges C16 (4.7 µF) through the Rate potentiometer.
+- RV2 sets the hysteresis. The LTspice notes give an LFO frequency range of approximately 0.185 Hz to 12.2 Hz.
+- U5D amplifies the voltage on C16 and makes the `TriangleOut` signal. `TriangleOut` goes to the gates of all four JFETs (test pad TP3).
+- RV1 sets the DC offset of `TriangleOut`. This offset sets the bias of the JFETs. The LTspice notes give a J113 cut-off voltage of −0.5 V to −3.0 V.
 
-### Phase shifter
+### Phaser
 
-- U6A buffers the input and feeds the all-pass chain and the dry path.
-- Four all-pass stages (U7A–U7D) each have a J113 across a 56 kΩ resistor to ground. As the LFO moves the gate, the JFET's resistance changes, and so does the stage's phase-shift frequency.
-- U6B sums the dry signal with the shifted signal from the Depth pot. Where they're out of phase they cancel, which creates the notches.
-- The LTspice notes put the two notches at 53.5 Hz and 311.9 Hz for R = 56 kΩ and C = 22 nF. They move up when the JFETs conduct, since that lowers the effective resistance across R.
+- U6A is the phaser buffer. The output of U6A goes to the all-pass stages and to the dry path.
+- There are four all-pass stages (U7A–U7D). Each stage has a J113 JFET across a 56 kΩ resistor to ground.
+- When the LFO changes the gate voltage, the resistance of the JFET changes. Thus, the phase-shift frequency of the stage also changes.
+- U6B adds the phase-shifted signal from the Depth potentiometer to the dry signal. At some frequencies, the two signals are out of phase. At these frequencies, phase cancellation occurs. This phase cancellation makes the notches.
+- The LTspice notes show the two notches at 53.5 Hz and 311.9 Hz (R = 56 kΩ, C = 22 nF).
+- When current flows through the JFETs, the frequencies of the notches increase. This occurs because the JFETs decrease the total resistance across R.
 
 ### Overdrive
 
-- U6C is a non-inverting gain stage with R29 (56 kΩ) plus the Gain pot as feedback, and C28 (82 pF) and two anti-parallel diode pairs (D5–D8) across it.
-- Mid-band gain is about 6.6× to 107×, with the boosted band's lower corner at about 723 Hz (R30 10 kΩ, C30 22 nF).
-- Past two diode drops, the diodes conduct and soft-clip the signal inside the feedback loop.
-- A passive 723 Hz RC low-pass feeds the tone stage U6D, labelled in LTspice as an active high-pass (3.288 kHz at wiper = 1).
+- U6C is a non-inverting gain stage. R29 (56 kΩ) plus the Gain potentiometer is the feedback resistance. C28 (82 pF) and two anti-parallel diode pairs (D5–D8) are across this resistance.
+- The mid-band gain is approximately 6.6× to 107×. The lower corner frequency of the amplified band is approximately 723 Hz (R30 10 kΩ, C30 22 nF).
+- When the signal voltage is more than the total forward voltage of two diodes, current flows through the diodes. The diodes then give soft clipping of the signal in the feedback loop.
+- The signal then goes through a passive RC low-pass filter (723 Hz) to the tone stage U6D. The LTspice schematic identifies this tone stage as an active high-pass filter (3.288 kHz at wiper = 1).
 
-## Getting started
+## How to start
 
-You'll need KiCad 10.0 or newer, LTspice and your own LTspice potentiometer model. The schematic loads `potentiometer.sub`, which is **not** included in this repo.
+These items are necessary:
 
-### How to import 3rd party models in LTspice
+- KiCad 10.0 or a newer version.
+- LTspice.
+- An LTspice potentiometer model. You must supply this model.
 
-1. Download the .sub and .asy files found in the `LTSpice/3rdParty/` folder.
-2. Place the files in your local LTspice directory, where the .sub files go into the `sub` folder and the .asy files go into the `sym` folder. The schematic places the op-amp as `OpAmps\TL072`, so `sym/OpAmps/` matches that path.
-3. Add your potentiometer model the same way.
-4. Open `LTSpice/Schematic.asc` and run it (a 15 s `.tran` with a 100 mV, 100 Hz test tone). Probe `InputSignal`, `TriangleOut`, `SignalOutPhaser` and `SignalOutOD`.
-5. For a frequency response, turn the commented `.ac` line into a SPICE directive and comment out `.tran`.
+The LTspice schematic loads `potentiometer.sub`. This repository does **not** include this file.
 
-Note: 3rd party models might get deleted once LTspice gets updated, so it's recommended to have a separate folder containing all your 3rd party models and then manually copy each file into the directory.
+### How to import third-party models into LTspice
 
-### How to import 3rd party libraries into KiCad
+1. Download the .sub and .asy files from the `LTSpice/3rdParty/` folder.
+2. Put the files in your local LTspice folder:
+   - Put the .sub files in the `sub` folder.
+   - Put the TL072 .asy file in the `sym/OpAmps/` folder, because the LTspice schematic identifies the op-amp as `OpAmps\TL072`.
+   - Put all other .asy files in the `sym` folder.
+3. Put the files of your potentiometer model in the folders of step 2.
+4. Open `LTSpice/Schematic.asc`.
+5. Start the simulation (a 15 s `.tran` with a 100 mV, 100 Hz test tone).
+6. Use the probe to show the waveforms of `InputSignal`, `TriangleOut`, `SignalOutPhaser` and `SignalOutOD`.
+7. To show the frequency response, do these steps:
+   1. Change the `.ac` comment line to a SPICE directive.
+   2. Change the `.tran` directive to a comment.
+   3. Start the simulation again.
 
-`KiCAD/GuitarPedalV4.kicad_pro` opens in KiCad 10 without these libraries, since the schematic and board embed every symbol and footprint. You only need them to edit parts.
+**Note:** When you update LTspice, LTspice can delete the third-party models.
 
-1. Extract the two zip files in `KiCAD/Libraries/` into a directory of your choosing.
-2. To import symbols, go into the symbol editor, click on the Preferences tab and head to Manage Symbol Libraries. Then click the folder icon, go to where you extracted the files and import the ones ending in .kicad_sym. This design uses the five `1_...` files, `Chassis` (inside `Chassis.pretty/`) and `SamacSys_Parts`. Keep each file name as its nickname so it matches the schematic.
-3. For footprints, go into the footprint editor, click on the Preferences tab and head to Manage Footprint Libraries. Then click the folder icon and add the `Chassis.pretty` and `SamacSys_Parts.pretty` folders (footprint libraries are folders, not single .kicad_mod files).
-4. The 3D models for the custom parts point to absolute paths on my machine, so they won't load on their own. Re-point each one under Footprint Properties > 3D Models to the STEP files in the extracted `SamacSys_Parts.3dshapes/` and `Chassis.pretty/3D Files/` folders.
+To keep your third-party models, do these steps:
+
+1. Keep a copy of all your third-party .sub and .asy files in a different folder (not in your local LTspice folder).
+2. After you update LTspice, manually copy these files into the same folders as in step 2 of "How to import third-party models into LTspice".
+
+### How to import third-party libraries into KiCad
+
+You can open `KiCAD/GuitarPedalV4.kicad_pro` in KiCad 10 without these libraries. This is possible because the KiCad schematic and the PCB file contain all the symbols and footprints. These libraries are necessary only when you edit parts.
+
+1. Extract the two ZIP files in `KiCAD/Libraries/` into a folder that you select.
+2. To import the symbols, do these steps:
+   1. Open the symbol editor.
+   2. Click the **Preferences** menu.
+   3. Select **Manage Symbol Libraries**.
+   4. Click the folder icon.
+   5. Navigate to a folder that contains .kicad_sym files.
+   6. Import the .kicad_sym files in this folder.
+   7. Keep each file name as its nickname, because the KiCad schematic uses these names.
+   8. If other folders contain .kicad_sym files, do steps 4 to 7 again for each of these folders.
+
+   **Note:** The KiCad project uses these .kicad_sym files: the five `1_...` files, `Chassis` (in `Chassis.pretty/`) and `SamacSys_Parts`.
+3. To import the footprints, do these steps:
+   1. Open the footprint editor.
+   2. Click the **Preferences** menu.
+   3. Select **Manage Footprint Libraries**.
+   4. Click the folder icon.
+   5. Add the `Chassis.pretty` and `SamacSys_Parts.pretty` folders. Each footprint library is a folder, not one .kicad_mod file.
+4. If KiCad does not show the 3D models of the custom parts, change the paths of these 3D models:
+   1. For each footprint of a custom part, navigate to **Footprint Properties > 3D Models**.
+   2. Change the path to the related STEP file in the extracted `SamacSys_Parts.3dshapes/` or `Chassis.pretty/3D Files/` folder.
+
+   **Note:** These 3D models use absolute paths on the computer of the designer.
 
 ## Repository structure
 
@@ -137,39 +193,39 @@ Note: 3rd party models might get deleted once LTspice gets updated, so it's reco
 │   ├── GuitarPedalV4.kicad_pro      # KiCad 10 project
 │   ├── GuitarPedalV4.kicad_sch      # Root sheet
 │   ├── PowerSupply.kicad_sch        # Power supply
-│   ├── Analog.kicad_sch             # Buffer, LFO, phaser, switches, jacks
+│   ├── Analog.kicad_sch             # Buffer, LFO, phaser, footswitches, jacks
 │   ├── Overdrive.kicad_sch          # Overdrive sub-sheet
 │   ├── GuitarPedalV4.kicad_pcb      # 4-layer PCB
-│   └── Libraries/                   # DIY and SamacSys library zips
+│   └── Libraries/                   # ZIP files of the DIY and SamacSys libraries
 ├── LTSpice/
-│   ├── Schematic.asc                # Full circuit with design notes
+│   ├── Schematic.asc                # Full circuit with LTspice notes
 │   └── 3rdParty/                    # TL072 model and symbol
 ├── LICENSE
 └── README.md
 ```
 
-## Sample simulations
+## Simulation examples
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/2930e1ff-972b-4aaf-bea7-94af7dbc0290" width="800" alt="LTspice transient plot">
   <br>
-  <em>Transient analysis (15 s, 100 mV 100 Hz tone). Top to bottom: input, LFO (about 0 V to −1.8 V, period about 5.4 s), phaser output, overdrive output (limited to about ±0.7 V).</em>
+  <em>Transient analysis (15 s, 100 mV, 100 Hz test tone). From top to bottom: input, LFO (approximately 0 V to −1.8 V, period approximately 5.4 s), phaser output, overdrive output (limit of approximately ±0.7 V).</em>
 </p>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/f858d751-f43d-4b48-af7d-00467eac52c9" width="800" alt="LTspice AC analysis plot">
   <br>
-  <em>AC analysis, 20 Hz to 200 kHz (solid is magnitude, dotted is phase). The phaser output shows its two notches.</em>
+  <em>AC analysis, 20 Hz to 200 kHz (continuous line: magnitude, dotted line: phase). The phaser output shows its two notches.</em>
 </p>
 
 ## Credits
 
-- Circuit design, simulation and PCB layout by Oscar Bazylewich.
-- Inspired by the MXR Phase 90, BOSS OD-1 and Ibanez Tube Screamer.
-- TL072 LTspice model: third-party macromodel (`tl072.sub`, created with PARTS release 4.01).
-- Credits to SamacSys for the KiCad symbols, footprints and 3D models of the J113, MJ-63022A, PTV09A, 3386P and SF12011F parts.
+- Oscar Bazylewich did the circuit design, the simulation and the PCB layout.
+- This project uses the MXR Phase 90, the BOSS OD-1 and the Ibanez Tube Screamer as examples.
+- TL072 LTspice model: third-party macromodel (`tl072.sub`, from PARTS release 4.01).
+- SamacSys supplied the KiCad symbols, footprints and 3D models of the J113, MJ-63022A, PTV09A, 3386P and SF12011F parts.
 - Enclosure: Hammond 1590BB.
 
 ## License
 
-Released under the GNU General Public License v3.0. See [LICENSE](LICENSE).
+The license of this project is the GNU General Public License v3.0. Refer to [LICENSE](LICENSE).
