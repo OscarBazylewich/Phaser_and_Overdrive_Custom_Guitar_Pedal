@@ -3674,7 +3674,7 @@
 				)
 			)
 		)
-		(property "Value" "MUR260RLG"
+		(property "Value" "1N4148"
 			(at 115.57 71.12 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3695,7 +3695,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/MUR260-D.PDF"
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/1N4148_1N4448.pdf"
 			(at 115.57 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3706,7 +3706,7 @@
 				)
 			)
 		)
-		(property "Description" "DIODE STANDARD 600V 2A AXIAL"
+		(property "Description" "Small Signal Switching Diode, DO-35"
 			(at 115.57 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3717,7 +3717,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "MUR260RLG"
+		(property "Manufacturer Part Number" "1N4148"
 			(at 115.57 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3728,7 +3728,7 @@
 				)
 			)
 		)
-		(property "Distributor Link 1" "https://mou.sr/4eiHyQ3"
+		(property "Distributor Link 1" "https://www.mouser.ca/ProductDetail/637-1N4148"
 			(at 115.57 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3739,7 +3739,7 @@
 				)
 			)
 		)
-		(property "Distributor Link 2" "https://www.digikey.ca/short/z59q2zrb"
+		(property "Distributor Link 2" ""
 			(at 115.57 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3750,7 +3750,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Name" "onsemi"
+		(property "Manufacturer Name" "Diotec Semiconductor"
 			(at 115.57 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3923,7 +3923,7 @@
 				)
 			)
 		)
-		(property "Value" "MUR260RLG"
+		(property "Value" "1N4148"
 			(at 130.81 71.12 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3944,7 +3944,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/MUR260-D.PDF"
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/1N4148_1N4448.pdf"
 			(at 130.81 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3955,7 +3955,7 @@
 				)
 			)
 		)
-		(property "Description" "DIODE STANDARD 600V 2A AXIAL"
+		(property "Description" "Small Signal Switching Diode, DO-35"
 			(at 130.81 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3966,7 +3966,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "MUR260RLG"
+		(property "Manufacturer Part Number" "1N4148"
 			(at 130.81 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3977,7 +3977,7 @@
 				)
 			)
 		)
-		(property "Distributor Link 1" "https://mou.sr/4eiHyQ3"
+		(property "Distributor Link 1" "https://www.mouser.ca/ProductDetail/637-1N4148"
 			(at 130.81 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3988,7 +3988,7 @@
 				)
 			)
 		)
-		(property "Distributor Link 2" "https://www.digikey.ca/short/z59q2zrb"
+		(property "Distributor Link 2" ""
 			(at 130.81 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3999,7 +3999,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Name" "onsemi"
+		(property "Manufacturer Name" "Diotec Semiconductor"
 			(at 130.81 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -4455,7 +4455,7 @@
 				)
 			)
 		)
-		(property "Value" "MUR260RLG"
+		(property "Value" "1N4148"
 			(at 130.81 68.58 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4476,7 +4476,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/MUR260-D.PDF"
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/1N4148_1N4448.pdf"
 			(at 130.81 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4487,7 +4487,7 @@
 				)
 			)
 		)
-		(property "Description" "DIODE STANDARD 600V 2A AXIAL"
+		(property "Description" "Small Signal Switching Diode, DO-35"
 			(at 130.81 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4498,7 +4498,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "MUR260RLG"
+		(property "Manufacturer Part Number" "1N4148"
 			(at 130.81 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4509,7 +4509,7 @@
 				)
 			)
 		)
-		(property "Distributor Link 1" "https://mou.sr/4eiHyQ3"
+		(property "Distributor Link 1" "https://www.mouser.ca/ProductDetail/637-1N4148"
 			(at 130.81 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4520,7 +4520,7 @@
 				)
 			)
 		)
-		(property "Distributor Link 2" "https://www.digikey.ca/short/z59q2zrb"
+		(property "Distributor Link 2" ""
 			(at 130.81 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4531,7 +4531,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Name" "onsemi"
+		(property "Manufacturer Name" "Diotec Semiconductor"
 			(at 130.81 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4897,7 +4897,7 @@
 				)
 			)
 		)
-		(property "Value" "MUR260RLG"
+		(property "Value" "1N4148"
 			(at 115.57 68.58 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4918,7 +4918,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/MUR260-D.PDF"
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/1N4148_1N4448.pdf"
 			(at 115.57 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4929,7 +4929,7 @@
 				)
 			)
 		)
-		(property "Description" "DIODE STANDARD 600V 2A AXIAL"
+		(property "Description" "Small Signal Switching Diode, DO-35"
 			(at 115.57 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4940,7 +4940,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Part Number" "MUR260RLG"
+		(property "Manufacturer Part Number" "1N4148"
 			(at 115.57 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4951,7 +4951,7 @@
 				)
 			)
 		)
-		(property "Distributor Link 1" "https://mou.sr/4eiHyQ3"
+		(property "Distributor Link 1" "https://www.mouser.ca/ProductDetail/637-1N4148"
 			(at 115.57 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4962,7 +4962,7 @@
 				)
 			)
 		)
-		(property "Distributor Link 2" "https://www.digikey.ca/short/z59q2zrb"
+		(property "Distributor Link 2" ""
 			(at 115.57 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4973,7 +4973,7 @@
 				)
 			)
 		)
-		(property "Manufacturer Name" "onsemi"
+		(property "Manufacturer Name" "Diotec Semiconductor"
 			(at 115.57 66.04 0)
 			(hide yes)
 			(show_name no)

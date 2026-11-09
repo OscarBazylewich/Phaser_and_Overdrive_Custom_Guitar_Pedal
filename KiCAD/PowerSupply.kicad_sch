@@ -349,9 +349,9 @@
 			)
 			(symbol "TPS7E82_1_1"
 				(pin power_in line
-					(at 7.62 -12.7 90)
+					(at -2.54 -2.54 0)
 					(length 2.54)
-					(name "GND"
+					(name "IN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -367,9 +367,9 @@
 					)
 				)
 				(pin power_in line
-					(at -2.54 -2.54 0)
+					(at 7.62 -12.7 90)
 					(length 2.54)
-					(name "IN"
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -7774,6 +7774,17 @@
 		)
 		(property "Manufacturer Name" "Texas Instruments"
 			(at 130.81 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Texas Instruments"
+			(at 181.61 146.304 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)

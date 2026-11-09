@@ -52,7 +52,7 @@ flowchart LR
 | U5–U7 TL074 quad op-amps | Buffers, LFO, phaser, overdrive |
 | Q1–Q4 J113 JFETs | Voltage-controlled resistors in the phaser |
 | D1 CUS520 Schottky, D2–D4 20 V TVS | Reverse-polarity, surge and ESD protection |
-| D5–D8 MUR260RLG | Overdrive clipping diodes |
+| D5–D8 1N4148 | Overdrive clipping diodes |
 | VR1–VR4 PTV09A potentiometers, RV1/RV2 3386P trimmers | Controls (refer to the next table) |
 | S1, S2 SF12011F DPDT footswitches | Phaser and overdrive on/off |
 | J1 2.1 × 5.5 mm DC jack, J2/J3 MJ-63022A 6.35 mm jacks | Power, output, input |
@@ -82,7 +82,7 @@ The LTspice schematic has the same topology and the same values as the KiCad sch
 
 - All the potentiometers are linear.
 - The Tone potentiometer is 1 MΩ (KiCad: 20 kΩ).
-- The clipping diodes are 1N4007 (KiCad: MUR260RLG).
+- The clipping diodes are 1N4007 (KiCad: 1N4148).
 - There are no footswitches.
 - Ideal ±4.5 V sources supply the power.
 - The same input signal goes to the phaser and to the overdrive. The phaser and the overdrive have different outputs.
