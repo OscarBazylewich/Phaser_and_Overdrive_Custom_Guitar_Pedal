@@ -8,8 +8,6 @@ This project tries to make better equivalents of guitar pedals that many guitar 
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/17ca487a-03ff-42e2-bb42-c56750a9efa3" width="480" alt="KiCad 3D view of the pedal PCB in a 1590BB outline">
-  <br>
-  <em>The last PCB layout of the project (KiCad 3D view).</em>
 </p>
 
 This repository contains these items:
@@ -72,8 +70,6 @@ flowchart LR
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/37f43ded-42a7-4dfd-a382-c153154c1a23" width="800" alt="LTspice schematic of the full circuit">
-  <br>
-  <em>The circuit in LTspice (<code>LTSpice/Schematic.asc</code>).</em>
 </p>
 
 The sections that follow use the KiCad reference designators. The LTspice schematic uses different reference designators.
@@ -207,15 +203,11 @@ You can open `KiCAD/GuitarPedalV4.kicad_pro` in KiCad 10 without these libraries
 ## Simulation examples
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2930e1ff-972b-4aaf-bea7-94af7dbc0290" width="800" alt="LTspice transient plot">
-  <br>
-  <em>Transient analysis (15 s, 100 mV, 100 Hz test tone). From top to bottom: input, LFO (approximately 0 V to −1.8 V, period approximately 5.4 s), phaser output, overdrive output (limit of approximately ±0.7 V).</em>
+  <img src="https://github.com/user-attachments/assets/2930e1ff-972b-4aaf-bea7-94af7dbc0290" width="800" alt="LTspice transient plot. From top to bottom: input, LFO, phaser output and overdrive output. The test signal is a 100 mV, 100 Hz sine wave for 15 s.">
 </p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/f858d751-f43d-4b48-af7d-00467eac52c9" width="800" alt="LTspice AC analysis plot">
-  <br>
-  <em>AC analysis, 20 Hz to 200 kHz (continuous line: magnitude, dotted line: phase). The phaser output shows its two notches.</em>
+  <img src="https://github.com/user-attachments/assets/f858d751-f43d-4b48-af7d-00467eac52c9" width="800" alt="LTspice AC analysis plot from 20 Hz to 200 kHz. The continuous line is the magnitude and the dotted line is the phase. The phaser output has two notches.">
 </p>
 
 ## Credits
@@ -224,7 +216,6 @@ You can open `KiCAD/GuitarPedalV4.kicad_pro` in KiCad 10 without these libraries
 - This project uses the MXR Phase 90, the BOSS OD-1 and the Ibanez Tube Screamer as examples.
 - TL072 LTspice model: third-party macromodel (`tl072.sub`, from PARTS release 4.01).
 - SamacSys supplied the KiCad symbols, footprints and 3D models of the J113, MJ-63022A, PTV09A, 3386P and SF12011F parts.
-- Enclosure: Hammond 1590BB.
 
 ## License
 
